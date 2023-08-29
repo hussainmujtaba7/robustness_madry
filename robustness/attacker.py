@@ -316,14 +316,14 @@ class AttackerModel(ch.nn.Module):
 
             inp = adv
 
-        normalized_inp = self.normalizer(inp)
+        # normalized_inp = self.normalizer(inp)
 
         if no_relu and (not with_latent):
             print("WARNING: 'no_relu' has no visible effect if 'with_latent is False.")
         if no_relu and fake_relu:
             raise ValueError("Options 'no_relu' and 'fake_relu' are exclusive")
 
-        output = self.model(normalized_inp, with_latent=with_latent,
+        output = self.model(inp, with_latent=with_latent,
                                 fake_relu=fake_relu, no_relu=no_relu)
         if with_image:
             return (output, inp)
