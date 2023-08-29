@@ -268,11 +268,11 @@ class AttackerModel(ch.nn.Module):
     For a more comprehensive overview of this class, see 
     :doc:`our detailed walkthrough <../example_usage/input_space_manipulation>`.
     """
-    def __init__(self, model, dataset):
+    def __init__(self, model):
         super(AttackerModel, self).__init__()
-        self.normalizer = helpers.InputNormalize(dataset.mean, dataset.std)
+        # self.normalizer = helpers.InputNormalize(dataset.mean, dataset.std)
         self.model = model
-        self.attacker = Attacker(model, dataset)
+        self.attacker = Attacker(model)
 
     def forward(self, inp, target=None, make_adv=False, with_latent=False,
                 fake_relu=False, no_relu=False, with_image=True, **attacker_kwargs):
